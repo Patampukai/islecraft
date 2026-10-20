@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#17251d">
+<title>IsleCraft | Origins</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+main.wrap{width:min(1400px,calc(100% - 32px));margin:28px auto 60px}
+.races-intro{margin-bottom:24px}
+.race-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;align-items:start}
+.race-column{min-width:0}
+.class-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.class-box{padding:24px;background:#1b2a20;border:1px solid #8e7948;border-radius:8px;box-shadow:0 6px 18px #0004;text-align:center}
+.class-box h3{margin:0 0 16px;color:#e9c879;font-size:1.35rem}
+.class-list{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.class-list span{display:inline-block;padding:9px 13px;border:1px solid #ffffff20;border-radius:6px;background:#ffffff08;color:#d2d8d1}
+@media(max-width:700px){.class-grid{grid-template-columns:1fr}.class-box{padding:18px}}
+.race-photo-box{overflow:hidden;aspect-ratio:3/4;min-height:180px;background:#1b2a20;border:2px solid #e9c879;border-radius:8px;box-shadow:0 6px 18px #0005}
+.race-photo-box img{display:block;width:100%;height:100%;object-fit:cover}
+.race-photo-placeholder{height:100%;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:16px;box-sizing:border-box;color:#e9c879;text-align:center}
+.race-photo-placeholder .placeholder-icon{font-size:34px}
+.race-photo-placeholder small{color:#d2d8d1;line-height:1.5}
+.race-info-box{margin-top:12px;padding:16px;background:#1b2a20;border:1px solid #8e7948;border-radius:8px;box-shadow:0 6px 18px #0004;overflow-wrap:anywhere}
+.race-info-box h3{margin:0 0 12px;color:#e9c879;font-size:1.1rem}
+.race-stats{display:grid;grid-template-columns:1fr;gap:8px;margin:0 0 16px}
+.race-stat{display:flex;justify-content:space-between;gap:8px;padding-bottom:6px;border-bottom:1px solid #ffffff18}
+.race-stat dt{color:#c7d0c7}.race-stat dd{margin:0;color:#fff0c4;font-weight:700;text-align:right}
+.race-ability{margin-top:10px;padding-top:12px;border-top:1px solid #e9c87966}
+.race-ability h4{margin:0 0 6px;color:#e9c879;font-size:.95rem}
+.race-ability p{margin:0;line-height:1.55;color:#d2d8d1;font-size:.92rem}
+@media(max-width:1100px){.race-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.race-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.race-info-box{padding:12px}}
+@media(max-width:440px){.race-grid{grid-template-columns:1fr}.race-photo-box{aspect-ratio:16/9}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="index.html"><strong>IsleCraft</strong></span></a>
+<nav class="navbar" aria-label="Main navigation">
+<a href="index.html">⌂ Home</a><a href="map.html">▧ Map</a><a href="npcs.html">♟ NPCs</a><a href="items.html">◆ Items</a><a class="active" href="races.html" aria-current="page">♙ Origins</a><a href="skills.html">✦ Skills</a><a href="other.html">⚒ Other</a>
+</nav></div></header>
+<main class="wrap">
+<section class="page active" id="races">
+<div class="heading races-intro"><h2>Races</h2><div class="ornament"></div></div>
+<div class="race-grid">
+<article class="race-column">
+<div class="race-photo-box">
+    <img src="images/races/human.png" alt="Human race">
+</div>
+<section class="race-info-box"><h3>Human</h3><dl class="race-stats"><div class="race-stat"><dt>Health</dt><dd>10</dd></div><div class="race-stat"><dt>Defense</dt><dd>0</dd></div><div class="race-stat"><dt>Speed</dt><dd>Default</dd></div><div class="race-stat"><dt>Size</dt><dd>Default</dd></div></dl><div class="race-ability"><h4>Main Ability — Superhuman</h4><p>On use: Gain Strength 2 & Speed 2 for 15 seconds. (Cooldown: 60 seconds)</p></div></section>
+</article>
+<article class="race-column">
+<div class="race-photo-box">
+    <img src="images/races/troll.png" alt="Troll race">
+</div>
+<section class="race-info-box"><h3>Troll</h3><dl class="race-stats"><div class="race-stat"><dt>Health</dt><dd>20</dd></div><div class="race-stat"><dt>Defense</dt><dd>10</dd></div><div class="race-stat"><dt>Speed</dt><dd>Very Slow</dd></div><div class="race-stat"><dt>Size</dt><dd>Large</dd></div></dl><div class="race-ability"><h4>Main Ability — Rage</h4><p>On use: Gain Strength 2 & Regeneration 2 for 15 seconds. (Cooldown: 60 seconds)</p></div></section>
+</article>
+<article class="race-column">
+<div class="race-photo-box">
+    <img src="images/races/dwarf.png" alt="Dwarf race">
+</div>
+<section class="race-info-box"><h3>Dwarf</h3><dl class="race-stats"><div class="race-stat"><dt>Health</dt><dd>14</dd></div><div class="race-stat"><dt>Defense</dt><dd>15</dd></div><div class="race-stat"><dt>Speed</dt><dd>Slow</dd></div><div class="race-stat"><dt>Size</dt><dd>Small</dd></div></dl><div class="race-ability"><h4>Main Ability — Stoneform</h4><p>On use: Gain Resistance 3 for 10 seconds. (Cooldown: 60 seconds)<h2></h2></p></div></section>
+</article>
+<article class="race-column">
+<div class="race-photo-box">
+    <img src="images/races/elf.png" alt="Elf race">
+</div>
+<section class="race-info-box"><h3>Elf</h3><dl class="race-stats"><div class="race-stat"><dt>Health</dt><dd>12</dd></div><div class="race-stat"><dt>Defense</dt><dd>0</dd></div><div class="race-stat"><dt>Speed</dt><dd>Very Fast</dd></div><div class="race-stat"><dt>Size</dt><dd>Big</dd></div></dl><div class="race-ability"><h4>Main Ability — Nature's Blessing</h4><p>On use: Gain Speed 3 & Jump Boost 2 for 15 seconds. (Cooldown: 60 seconds)</p></div></section>
+</article>
+<article class="race-column">
+<div class="race-photo-box">
+    <img src="images/races/demon.png" alt="Demon race">
+</div>
+<section class="race-info-box"><h3>Demon</h3><dl class="race-stats"><div class="race-stat"><dt>Health</dt><dd>15</dd></div><div class="race-stat"><dt>Defense</dt><dd>5</dd></div><div class="race-stat"><dt>Speed</dt><dd>Fast</dd></div><div class="race-stat"><dt>Size</dt><dd>Big</dd></div></dl><div class="race-ability"><h4>Main Ability — Pyrrho's Curse</h4><p>On use: Gain Strength 3 & Slowness 3 for 15 seconds. (Cooldown: 60 seconds)</p></div></section>
+</article>
+</div>
+<div class="heading classes-intro" style="margin-top: 42px; margin-bottom: 24px;"><h2>Classes</h2><div class="ornament"></div></div>
+<div class="class-grid" aria-label="Class categories">
+  <article class="class-box">
+    <h3>Melee</h3>
+    <div class="class-list"><span>Tank</span><span>Warrior</span><span>Rogue</span></div>
+  </article>
+  <article class="class-box">
+    <h3>Ranged</h3>
+    <div class="class-list"><span>Archer</span><span>Hunter</span></div>
+  </article>
+  <article class="class-box">
+    <h3>Mage</h3>
+    <div class="class-list"><span>Elementalist</span><span>Necromancer</span></div>
+  </article>
+</div>
+</section></main>
+</body></html>

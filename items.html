@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#17251d">
+    <title>IsleCraft | Items</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Fallbacks for the items page if the shared stylesheet hides inactive pages. */
+        main.wrap { width: min(1200px, calc(100% - 32px)); margin: 28px auto; }
+        .page#items { display: block; }
+        .item-popup {
+            display: none;
+            position: fixed;
+            z-index: 2147483647;
+            width: 280px;
+            height: 280px;
+            padding: 10px;
+            box-sizing: border-box;
+            background: #1b2a20;
+            border: 2px solid #e9c879;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px #000b;
+            pointer-events: none;
+        }
+        .item-popup img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .cards .card { position: relative; }
+        .cards .card h3 { margin-top: 0; }
+        .cards .card .cardbody { padding: 16px; }
+        .item-search-empty { display: none; }
+        @media (max-width: 600px) {
+            .item-popup { width: 200px; height: 200px; }
+        }
+    
+.category-intro{margin:-4px 0 24px;color:var(--muted,#aab5ad)}
+.item-category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.item-category-card{min-height:150px;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:8px;padding:22px;text-align:left;font:inherit;color:var(--text,#e8eee8);border:1px solid rgba(255,255,255,.12);border-radius:15px;background:linear-gradient(135deg,#2b4031,#17251d);box-shadow:0 10px 28px rgba(0,0,0,.18);cursor:pointer;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+.item-category-card:hover{transform:translateY(-3px);border-color:rgba(233,200,121,.65);box-shadow:0 15px 32px rgba(0,0,0,.28)}
+.category-symbol{font-size:1.7rem;color:#e9c879;line-height:1}.category-name{font-size:1.55rem;font-weight:700}.category-description{color:var(--muted,#aab5ad);font-size:.92rem}
+.category-materials{background:linear-gradient(135deg,#203b32,#17251d)}.category-weapons{background:linear-gradient(135deg,#49312b,#211b1a)}.category-tools{background:linear-gradient(135deg,#3b4535,#1b251d)}.category-armor{background:linear-gradient(135deg,#35404b,#19212a)}.category-wip{background:linear-gradient(135deg,#453957,#211b2b)}
+.item-modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(5,9,7,.8);backdrop-filter:blur(6px)}.item-modal.is-open{display:flex}
+.item-modal-panel{width:min(1500px,96vw);height:92vh;max-height:1000px;display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:var(--panel,#17251d);box-shadow:0 24px 70px rgba(0,0,0,.5)}
+.item-modal-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1)}.item-modal-header h2{margin:0;color:var(--text,#e8eee8);font:inherit;font-size:1.8rem;font-weight:700}
+.item-modal-close{display:inline-grid;place-items:center;width:40px;height:40px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(255,255,255,.06);color:var(--text,#e8eee8);font:inherit;font-size:1.5rem;cursor:pointer}
+.item-modal-body{padding:22px 24px 28px;overflow-y:auto}.item-modal-body .toolbar{margin-bottom:20px}.item-modal-body .cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.item-modal-body .cards .card{min-width:0}.item-modal-body .cards .card h3{overflow-wrap:anywhere}.category-empty{color:var(--muted,#aab5ad);padding:24px 0}
+@media(max-width:1000px){.item-modal-body .cards{grid-template-columns:repeat(3,minmax(0,1fr))}.item-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.item-category-grid,.item-modal-body .cards{grid-template-columns:1fr}.item-category-card{min-height:125px}.item-modal{padding:8px}.item-modal-panel{width:100%;height:94vh}.item-modal-header,.item-modal-body{padding:16px}}
+
+
+.materials-grid .material-card{overflow:hidden}
+.material-image-wrap{height:150px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(0,0,0,.16);border-bottom:1px solid rgba(255,255,255,.08)}
+.material-image-wrap img{display:block;width:100%;height:100%;object-fit:contain;padding:14px;box-sizing:border-box}
+.material-image-wrap.image-missing::after{content:"Add image";color:var(--muted,#aab5ad);font-size:.9rem}
+</style>
+</head>
+<body>
+<header>
+    <div class="wrap nav">
+        <a class="brand" href="index.html">
+            <span><strong>IsleCraft</strong></span>
+        </a>
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html">⌂ Home</a>
+            <a href="map.html">▧ Map</a>
+            <a href="npcs.html">♟ NPCs</a>
+            <a class="active" href="items.html" aria-current="page">◆ Items</a>
+            <a href="races.html">♙ Origins</a>
+            <a href="skills.html">✦ Skills</a>
+            <a href="other.html">⚒ Other</a>
+        </nav>
+    </div>
+</header>
+
+<main class="wrap">
+  <section class="item-category-page">
+    <div class="heading"><h2>Item Compendium</h2><div class="ornament"></div></div>
+    <div class="item-category-grid" aria-label="Item categories">
+      <button class="item-category-card category-items" type="button" data-category="Items"><span class="category-symbol">◆</span><span class="category-name">Items</span><span class="category-description">Browse the full collection</span></button>
+      <button class="item-category-card category-materials" type="button" data-category="Materials"><span class="category-symbol">◆</span><span class="category-name">Materials</span><span class="category-description">Craftable and obtainable materials</span></button>
+      <button class="item-category-card category-weapons" type="button" data-category="Weapons"><span class="category-symbol">⚔</span><span class="category-name">Weapons</span><span class="category-description">Swords, axes, daggers and more</span></button>
+      <button class="item-category-card category-tools" type="button" data-category="Tools"><span class="category-symbol">⚒</span><span class="category-name">Tools</span><span class="category-description">Tools and gathering gear</span></button>
+      <button class="item-category-card category-armor" type="button" data-category="Armor"><span class="category-symbol">⬡</span><span class="category-name">Armor</span><span class="category-description">Armor collection</span></button>
+      <button class="item-category-card category-wip" type="button" data-category="W.I.P"><span class="category-symbol">✦</span><span class="category-name">W.I.P</span><span class="category-description">Items still in development</span></button>
+    </div>
+  </section>
+  <div class="item-modal" id="itemCategoryModal" aria-hidden="true">
+    <section class="item-modal-panel" role="dialog" aria-modal="true" aria-labelledby="itemModalTitle">
+      <header class="item-modal-header"><h2 id="itemModalTitle">Items</h2><button class="item-modal-close" id="itemModalClose" type="button" aria-label="Close category">&times;</button></header>
+      <div class="item-modal-body">
+        <div class="toolbar"><input class="search" id="itemSearch" type="search" placeholder="Search by name, type, or rarity..." aria-label="Search items"></div>
+        <div class="cards" id="itemCards" data-cards="items">
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/heirloomblade.png" alt="Heirloom Blade">
+                </div>
+                <div class="cardbody">
+                    <h3>Heirloom Blade</h3>
+                    <span class="tag">Sword</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/overgrownpick.png" alt="Overgrown Pickaxe">
+                </div>
+                <div class="cardbody">
+                    <h3>Overgrown Pickaxe</h3>
+                    <span class="tag">Tool</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/farmerscythe.png" alt="Farmer's Scythe">
+                </div>
+                <div class="cardbody">
+                    <h3>Farmer's Scythe</h3>
+                    <span class="tag">Scythe</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/chippedgreatsword.png" alt="Chipped Greatsword">
+                </div>
+                <div class="cardbody">
+                    <h3>Chipped Greatsword</h3>
+                    <span class="tag">Greatsword</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/stonedagger.png" alt="Stone Dagger">
+                </div>
+                <div class="cardbody">
+                    <h3>Stone Dagger</h3>
+                    <span class="tag">Dagger</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/dullaxe.png" alt="Dull Axe">
+                </div>
+                <div class="cardbody">
+                    <h3>Dull Axe</h3>
+                    <span class="tag">Axe</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/brokenmace.png" alt="Broken Mace">
+                </div>
+                <div class="cardbody">
+                    <h3>Broken Mace</h3>
+                    <span class="tag">Mace</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+            
+             <article class="card">
+                <div class="item-popup">
+                    <img src="images/harvestersfang.png" alt="Harvester's Fang">
+                </div>
+                <div class="cardbody">
+                    <h3>Harvester's Fang</h3>
+                    <span class="tag">Scythe</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/swordoftheforgotten.png" alt="Sword of the Forgotten">
+                </div>
+                <div class="cardbody">
+                    <h3>Sword of the Forgotten</h3>
+                    <span class="tag">Sword</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/ironcleaver.png" alt="Iron Cleaver">
+                </div>
+                <div class="cardbody">
+                    <h3>Iron Cleaver</h3>
+                    <span class="tag">Greatsword</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/greatswordofaurtree.png" alt="Greatsword of Aurtree">
+                </div>
+                <div class="cardbody">
+                    <h3>Greatsword of Aurtree</h3>
+                    <span class="tag">Greatsword</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/battleaxe.png" alt="Battle Axe">
+                </div>
+                <div class="cardbody">
+                    <h3>Battle Axe</h3>
+                    <span class="tag">Axe</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/whisperblade.png" alt="Whisperblade">
+                </div>
+                <div class="cardbody">
+                    <h3>Whisperblade</h3>
+                    <span class="tag">Dagger</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/stonebreakermace.png" alt="Stonebreaker Mace">
+                </div>
+                <div class="cardbody">
+                    <h3>Stonebreaker Mace</h3>
+                    <span class="tag">Mace</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/greathammer.png" alt="Greathammer">
+                </div>
+                <div class="cardbody">
+                    <h3>Greathammer</h3>
+                    <span class="tag">Hammer</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/scytheofthefallen.png" alt="Scythe of the Fallen">
+                </div>
+                <div class="cardbody">
+                    <h3>Scythe of the Fallen</h3>
+                    <span class="tag">Scythe</span>
+                    <span class="tag">Uncommon</span>
+                </div>
+            </article>
+
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/vanguardsedge.png" alt="Vanguard's Edge">
+                </div>
+                <div class="cardbody">
+                    <h3>Vanguard's Edge</h3>
+                    <span class="tag">Sword</span>
+                    <span class="tag">Rare</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/colossusblade.png" alt="Colossus Blade">
+                </div>
+                <div class="cardbody">
+                    <h3>Colossus Blade</h3>
+                    <span class="tag">Greatsword</span>
+                    <span class="tag">Rare</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/furyofthemountains.png" alt="Fury of the Mountains">
+                </div>
+                <div class="cardbody">
+                    <h3>Fury of the Mountains</h3>
+                    <span class="tag">Axe</span>
+                    <span class="tag">Rare</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/nightpiercer.png" alt="Nightpiercer">
+                </div>
+                <div class="cardbody">
+                    <h3>Nightpiercer</h3>
+                    <span class="tag">Dagger</span>
+                    <span class="tag">Rare</span>
+                </div>
+            </article>
+            
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/maceofthestormlord.png" alt="Mace of the Stormlord">
+                </div>
+                <div class="cardbody">
+                    <h3>Mace of the Stormlord</h3>
+                    <span class="tag">Mace</span>
+                    <span class="tag">Rare</span>
+                </div>
+            </article>
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/armor/wornset.png" alt="Worn Set">
+                </div>
+                <div class="cardbody">
+                    <h3>Worn Set</h3>
+                    <span class="tag">Armor</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/armor/patchedwornset.png" alt="Patched Worn Set">
+                </div>
+                <div class="cardbody">
+                    <h3>Patched Worn Set</h3>
+                    <span class="tag">Armor</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+            <article class="card">
+                <div class="item-popup">
+                    <img src="images/armor/apprenticeset.png" alt="Apprentice Set">
+                </div>
+                <div class="cardbody">
+                    <h3>Apprentice Set</h3>
+                    <span class="tag">Armor</span>
+                    <span class="tag">Common</span>
+                </div>
+            </article>
+        </div>
+        <div class="cards materials-grid" id="materialCards" style="display:none" aria-label="Material items"></div>
+        <p class="empty item-search-empty" id="noItems" style="display:none">No matching items found.</p>
+        <p class="category-empty" id="categoryEmpty" style="display:none"></p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("itemCategoryModal");
+  const title = document.getElementById("itemModalTitle");
+  const closeButton = document.getElementById("itemModalClose");
+  const search = document.getElementById("itemSearch");
+  const cardsContainer = document.getElementById("itemCards");
+  const cards = [...document.querySelectorAll("#itemCards .card")];
+  const materialCards = document.getElementById("materialCards");
+  const noItems = document.getElementById("noItems");
+  const categoryEmpty = document.getElementById("categoryEmpty");
+  let category = "Items", lastTrigger = null;
+
+  // Replace these example names and image paths with your own materials.
+  // Add each photo to images/materials/ using the matching filename.
+  const materials = [
+    { name: "Wool", image: "images/materials/wool.png" },
+    { name: "Wool Cloth", image: "images/materials/woolcloth.png" },
+    { name: "Fox Pelt", image: "images/materials/foxpelt.png" },
+    { name: "Wolf Pelt", image: "images/materials/wolfpelt.png" },
+    { name: "Redberry", image: "images/materials/redberry.png" },
+    { name: "Yellowberry", image: "images/materials/yellowberry.png" },
+    { name: "Blueberry", image: "images/materials/blueberry.png" },
+    { name: "Blackberry", image: "images/materials/blackberry.png" }
+  ];
+
+  function buildMaterialCards() {
+    materialCards.replaceChildren();
+    materials.forEach(material => {
+      const card = document.createElement("article");
+      card.className = "card material-card";
+      const imageWrap = document.createElement("div");
+      imageWrap.className = "material-image-wrap";
+      const img = document.createElement("img");
+      img.src = material.image;
+      img.alt = material.name;
+      img.loading = "lazy";
+      img.addEventListener("error", () => {
+        img.style.display = "none";
+        imageWrap.classList.add("image-missing");
+        imageWrap.setAttribute("aria-label", "Add image for " + material.name);
+      }, { once: true });
+      imageWrap.appendChild(img);
+      const body = document.createElement("div");
+      body.className = "cardbody";
+      const heading = document.createElement("h3");
+      heading.textContent = material.name;
+      body.appendChild(heading);
+      card.append(imageWrap, body);
+      materialCards.appendChild(card);
+    });
+  }
+
+  function itemCategory(card) {
+    const tags = [...card.querySelectorAll(".tag")].map(t => t.textContent.trim().toLowerCase());
+    if (tags.includes("tool")) return "Tools";
+    if (tags.includes("armor")) return "Armor";
+
+    return "Weapons";
+  }
+
+  function applyFilters() {
+    const query = search.value.trim().toLowerCase();
+    const isMaterials = category === "Materials";
+    cardsContainer.style.display = isMaterials ? "none" : "grid";
+    materialCards.style.display = isMaterials ? "grid" : "none";
+    let count = 0;
+
+    if (isMaterials) {
+      [...materialCards.querySelectorAll(".material-card")].forEach(card => {
+        const visible = card.textContent.toLowerCase().includes(query);
+        card.style.display = visible ? "" : "none";
+        if (visible) count++;
+      });
+    } else {
+      cards.forEach(card => {
+        const categoryMatch =
+    category === "Items" ||
+    (["Weapons", "Tools", "Armor"].includes(category) &&
+     itemCategory(card) === category);
+        const visible = categoryMatch && card.textContent.toLowerCase().includes(query);
+        card.style.display = visible ? "" : "none";
+        if (visible) count++;
+      });
+    }
+
+    const emptyCategory = count === 0 && (category === "Armor" || category === "W.I.P");
+    noItems.style.display = count === 0 && !emptyCategory && category !== "Materials" ? "block" : "none";
+    categoryEmpty.style.display = emptyCategory ? "block" : "none";
+    if (emptyCategory) categoryEmpty.textContent = category === "Armor" ? "No armor has been added yet." : "This section is a work in progress. Check back later!";
+    if (category === "Materials") {
+      noItems.style.display = count === 0 ? "block" : "none";
+      noItems.textContent = count === 0 ? "No matching materials found." : "No matching items found.";
+    } else {
+      noItems.textContent = "No matching items found.";
+    }
+  }
+
+  function openCategory(name, trigger) {
+    category = name;
+    lastTrigger = trigger;
+    title.textContent = name;
+    search.value = "";
+    search.placeholder = name === "Materials" ? "Search materials..." : "Search by name, type, or rarity...";
+    applyFilters();
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    closeButton.focus();
+  }
+
+  function closeCategory() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  buildMaterialCards();
+  document.querySelectorAll(".item-category-card").forEach(button => button.addEventListener("click", () => openCategory(button.dataset.category, button)));
+  closeButton.addEventListener("click", closeCategory);
+  modal.addEventListener("click", e => { if (e.target === modal) closeCategory(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && modal.classList.contains("is-open")) closeCategory(); });
+  search.addEventListener("input", applyFilters);
+
+  // Existing cursor-following previews for the original item cards.
+  cards.forEach(card => {
+    const popup = card.querySelector(".item-popup");
+    if (!popup) return;
+    document.body.appendChild(popup);
+    card.addEventListener("mouseenter", () => { popup.style.display = "block"; });
+    card.addEventListener("mousemove", event => {
+      const offset = 18, margin = 10, width = popup.offsetWidth, height = popup.offsetHeight;
+      let x = event.clientX + offset, y = event.clientY + offset;
+      if (x + width > window.innerWidth - margin) x = event.clientX - width - offset;
+      if (y + height > window.innerHeight - margin) y = event.clientY - height - offset;
+      popup.style.left = Math.max(margin, x) + "px";
+      popup.style.top = Math.max(margin, y) + "px";
+    });
+    card.addEventListener("mouseleave", () => { popup.style.display = "none"; });
+  });
+});
+</script>
+</body>
+</html>

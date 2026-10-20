@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17251d">
+<title>IsleCraft | Home</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="#" onclick="showPage('home');return false"><span><strong>IsleCraft</strong></span></a>
+<nav class="navbar" aria-label="Main navigation">
+    <a class="active" href="index.html">⌂ Home</a>
+    <a href="map.html">▧ Map</a>
+    <a href="npcs.html">♟ NPCs</a>
+    <a href="items.html">◆ Items</a>
+    <a href="races.html">♙ Origins</a>
+    <a href="skills.html">✦ Skills</a>
+    <a href="other.html">⚒ Other</a>
+</nav></div></header>
+<main class="wrap">
+<section class="page active" id="home">
+<div class="layout"><div>
+<div class="heading"><h2>Welcome, Adventurer</h2><div class="ornament"></div></div>
+<div class="feature-grid"><div class="feature"><div class="ico">⚒</div><strong>Custom Content</strong><small>Quests & dungeons</small></div><div class="feature"><div class="ico">♟</div><strong>Community</strong><small>Guilds & parties</small></div><div class="feature"><div class="ico">⚔</div><strong>Adventure</strong><small>Bosses & loot</small></div><div class="feature"><div class="ico">✦</div><strong>Progression</strong><small>Skills & builds</small></div></div>
+</div><aside class="panel"><h3>Server Highlights</h3>
+<div class="high"><span class="ico">▧</span><div><strong>World Map</strong><small>Regions, towns, and dungeons.</small></div></div>
+<div class="high"><span class="ico">♟</span><div><strong>NPCs</strong><small>Quest givers, merchants, and lore.</small></div></div>
+<div class="high"><span class="ico">◆</span><div><strong>Loot & Crafting</strong><small>Collect gear and rare materials.</small></div></div>
+<div class="high"><span class="ico">✦</span><div><strong>Skills & Races</strong><small>Shape your character's playstyle.</small></div></div>
+</aside></div></section>
+
+<section class="page" id="map"><div class="heading"><h2>World Map</h2><p>Discover regions, towns, dungeons, and points of interest.</p><div class="ornament"></div></div>
+<div class="map-placeholder"><img src="images/world-map.jpg" alt="Oakfall world map">
+<div class="toolbar"><input class="search" data-search="map" placeholder="Search regions..."></div>
+<div class="cards" data-cards="map">
+<article class="card"><img src="images/eldoria.jpg" alt="Green fantasy town" onerror="this.style.display='none'"><div class="cardbody"><h3>Oakheart Village</h3><p>A peaceful starter settlement with shops, quests, and a notice board.</p><span class="tag">Town</span><span class="tag">Starter zone</span></div></article>
+<article class="card"><img src="images/whisperwood.jpg" alt="Forest region" onerror="this.style.display='none'"><div class="cardbody"><h3>Whisperwood</h3><p>An old forest where rare herbs grow and dangerous creatures roam.</p><span class="tag">Wilderness</span><span class="tag">Level 5–15</span></div></article>
+<article class="card"><img src="images/frostpeak.jpg" alt="Snowy mountains" onerror="this.style.display='none'"><div class="cardbody"><h3>Frostpeak Keep</h3><p>A frozen fortress hiding a challenging dungeon and valuable relics.</p><span class="tag">Dungeon</span><span class="tag">Level 20+</span></div></article>
+</div><div class="empty" data-empty="map">No matching regions found.</div></section>
+
+<section class="page" id="npcs"><div class="heading"><h2>NPC Bestiary & Directory</h2><p>Meet the people, merchants, trainers, and enemies of Oakfall.</p><div class="ornament"></div></div><div class="toolbar"><input class="search" data-search="npcs" placeholder="Search NPCs by name, role, or location..."></div>
+<div class="cards" data-cards="npcs">
+<article class="card"><img src="images/npc-elder.jpg" alt="Village elder" onerror="this.style.display='none'"><div class="cardbody"><h3>Elder Bram</h3><p>Introduces newcomers to Oakheart and offers the first village quest.</p><span class="tag">Quest giver</span><span class="tag">Oakheart</span></div></article>
+<article class="card"><img src="images/npc-blacksmith.jpg" alt="Blacksmith" onerror="this.style.display='none'"><div class="cardbody"><h3>Mira Ironbloom</h3><p>Crafts weapons and armor in exchange for ore and coins.</p><span class="tag">Blacksmith</span><span class="tag">Crafting</span></div></article>
+<article class="card"><img src="images/npc-ranger.jpg" alt="Ranger" onerror="this.style.display='none'"><div class="cardbody"><h3>Thalen Greenpath</h3><p>A ranger who knows hidden paths through Whisperwood.</p><span class="tag">Guide</span><span class="tag">Whisperwood</span></div></article>
+</div><div class="empty" data-empty="npcs">No matching NPCs found.</div></section>
+
+
+<section class="page" id="races"><div class="heading"><h2>Races & Origins</h2><p>Document race lore, bonuses, traits, and starting areas.</p><div class="ornament"></div></div><div class="toolbar"><input class="search" data-search="races" placeholder="Search races..."></div>
+<div class="cards" data-cards="races">
+<article class="card"><img src="images/race-human.jpg" alt="Human adventurer" onerror="this.style.display='none'"><div class="cardbody"><h3>Human</h3></article>
+<article class="card"><img src="images/race-elf.jpg" alt="Elf adventurer" onerror="this.style.display='none'"><div class="cardbody"><h3>Elf</h3></article>
+<article class="card"><img src="images/race-dwarf.jpg" alt="Dwarf adventurer" onerror="this.style.display='none'"><div class="cardbody"><h3>Dwarf</h3></article>
+</div><div class="empty" data-empty="races">No matching races found.</div></section>
+
+<section class="page" id="skills"><div class="heading"><h2>Skills & Abilities</h2><p>Show players what each ability does, what it costs, and how to unlock it.</p><div class="ornament"></div></div><div class="toolbar"><input class="search" data-search="skills" placeholder="Search skills by name or type..."></div>
+<div class="cards" data-cards="skills">
+<article class="card"><img src="images/skill-flame.jpg" alt="Flame magic" onerror="this.style.display='none'"><div class="cardbody"><h3>Flame Burst</h3><p>Deals fire damage to enemies in a small area.</p><span class="tag">Magic</span><span class="tag">Mana: 25</span><span class="tag">Cooldown: 8s</span></div></article>
+<article class="card"><img src="images/skill-whirlwind.jpg" alt="Whirlwind attack" onerror="this.style.display='none'"><div class="cardbody"><h3>Whirlwind</h3><p>Spin with your weapon to strike nearby enemies.</p><span class="tag">Physical</span><span class="tag">Stamina: 20</span><span class="tag">Cooldown: 10s</span></div></article>
+<article class="card"><img src="images/skill-heal.jpg" alt="Healing magic" onerror="this.style.display='none'"><div class="cardbody"><h3>Nature's Embrace</h3><p>Restores health over time through natural energy.</p><span class="tag">Support</span><span class="tag">Mana: 30</span><span class="tag">Cooldown: 15s</span></div></article>
+</div><div class="empty" data-empty="skills">No matching skills found.</div></section>
+
+<section class="page" id="other"><div class="heading"><h2>Server Information</h2><div class="ornament"></div></div><div class="cards">
+<article class="card"><div class="cardbody"><h3>📜 Server Rules</h3><p>Add your rules, fair-play policy, and how to report issues.</p></div></article>
+<article class="card"><div class="cardbody"><h3>🗓️ News & Events</h3><p>Post update notes, seasonal events, and maintenance notices.</p></div></article>
+<article class="card"><div class="cardbody"><h3>❔ New Player Guide</h3><p>Explain how to join, claim rewards, level up, and find your first quest.</p></div></article>
+<article class="card"><div class="cardbody"><h3>📖 Lore & Credits</h3><p>Share the history of your world and credit builders and contributors.</p></div></article>
+</div></section>
+</main>
+<script>
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+document.querySelectorAll('[data-search]').forEach(input=>input.addEventListener('input',()=>{const id=input.dataset.search,q=input.value.toLowerCase().trim(),wrap=document.querySelector(`[data-cards="${id}"]`);let count=0;wrap.querySelectorAll('.card').forEach(c=>{const ok=c.innerText.toLowerCase().includes(q);c.style.display=ok?'':'none';if(ok)count++;});const empty=document.querySelector(`[data-empty="${id}"]`);if(empty)empty.style.display=count?'none':'block';}));
+document.querySelectorAll(".card").forEach(card => {
+    const popup = card.querySelector(".item-popup");
+
+    if (!popup) return;
+
+    // Move popup out of the card's layout
+    document.body.appendChild(popup);
+
+    card.addEventListener("mouseenter", () => {
+        popup.style.display = "block";
+    });
+
+    card.addEventListener("mousemove", event => {
+        const offset = 20;
+        const margin = 10;
+
+        const width = popup.offsetWidth;
+        const height = popup.offsetHeight;
+
+        let x = event.clientX + offset;
+        let y = event.clientY + offset;
+
+        // Flip to the left if it would overflow
+        if (x + width > window.innerWidth - margin) {
+            x = event.clientX - width - offset;
+        }
+
+        // Flip above if it would overflow
+        if (y + height > window.innerHeight - margin) {
+            y = event.clientY - height - offset;
+        }
+
+        popup.style.left = `${Math.max(margin, x)}px`;
+        popup.style.top = `${Math.max(margin, y)}px`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        popup.style.display = "none";
+    });
+});
+</script>
+</body>
+</html>

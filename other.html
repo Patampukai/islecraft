@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17251d">
+<title>IsleCraft | Other</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.other-main{width:min(1100px,calc(100% - 32px));margin:32px auto 60px}
+.other-main .heading{margin-bottom:24px}
+.other-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.other-tile{min-height:92px;padding:18px 14px;display:flex;align-items:center;justify-content:center;gap:10px;flex-direction:column;text-align:center;background:linear-gradient(145deg,#213629,#17251d);border:1px solid #8e7948;border-radius:9px;color:#e9e6d8;cursor:pointer;box-shadow:0 5px 14px #0003;transition:transform .18s ease,border-color .18s ease,background .18s ease;font:inherit}
+.other-tile:hover,.other-tile:focus-visible{transform:translateY(-3px);border-color:#b9d69a;background:linear-gradient(145deg,#2b4533,#1b2a20);outline:none}
+.other-tile .tile-icon{font-size:1.45rem;color:#e9c879;line-height:1}
+.other-tile strong{font-size:1rem;color:#f0d58e}
+.other-modal-backdrop{position:fixed;inset:0;background:#000a;display:none;align-items:center;justify-content:center;padding:18px;z-index:1000}
+.other-modal-backdrop.open{display:flex}
+.other-modal{width:min(560px,100%);max-height:86vh;overflow:auto;position:relative;padding:25px;background:#1b2a20;border:1px solid #a58c52;border-radius:12px;box-shadow:0 18px 55px #0009;color:#e4e9e2}
+.other-modal h2{margin:0 35px 14px 0;color:#e9c879}
+.other-modal p{line-height:1.65;color:#c4cec5;margin:0;white-space:pre-line}
+.other-modal .close-modal{position:absolute;top:10px;right:12px;border:0;background:transparent;color:#e9c879;font-size:1.6rem;cursor:pointer;line-height:1}
+.other-modal-image{display:block;width:100%;max-height:280px;object-fit:contain;margin:8px auto 18px;border-radius:8px}
+.other-modal-image[hidden]{display:none}
+@media(max-width:850px){.other-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:600px){.other-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.other-tile{min-height:82px;padding:14px 8px}.other-modal{padding:21px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="index.html"><span><strong>IsleCraft</strong></span></a>
+<nav class="navbar" aria-label="Main navigation">
+    <a href="index.html">⌂ Home</a>
+    <a href="map.html">▧ Map</a>
+    <a href="npcs.html">♟ NPCs</a>
+    <a href="items.html">◆ Items</a>
+    <a href="races.html">♙ Origins</a>
+    <a href="skills.html">✦ Skills</a>
+    <a class="active" href="other.html" aria-current="page">⚒ Other</a>
+</nav></div></header>
+<main class="wrap other-main">
+  <div class="heading"><h2>Other</h2><div class="ornament"></div></div>
+  <section class="other-grid" aria-label="Other features">
+    <button class="other-tile" type="button" data-feature="Profile"><span class="tile-icon">♙</span><strong>Profile</strong></button>
+    <button class="other-tile" type="button" data-feature="Professions"><span class="tile-icon">⚒</span><strong>Professions</strong></button>
+    <button class="other-tile" type="button" data-feature="Vault"><span class="tile-icon">▣</span><strong>Vault</strong></button>
+    <button class="other-tile" type="button" data-feature="Bank"><span class="tile-icon">◆</span><strong>Bank</strong></button>
+    <button class="other-tile" type="button" data-feature="Mounts"><span class="tile-icon">♞</span><strong>Mounts</strong></button>
+    <button class="other-tile" type="button" data-feature="Fast Travel"><span class="tile-icon">➤</span><strong>Fast Travel</strong></button>
+    <button class="other-tile" type="button" data-feature="Levels"><span class="tile-icon">✦</span><strong>Levels</strong></button>
+  </section>
+</main>
+<div class="other-modal-backdrop" id="feature-modal" role="dialog" aria-modal="true" aria-labelledby="feature-title">
+  <div class="other-modal" role="document">
+    <button class="close-modal" type="button" aria-label="Close popup">×</button>
+    <h2 id="feature-title">Feature</h2>
+    <img class="other-modal-image" id="feature-image" src="" alt="" hidden>
+    <p id="feature-description">Add information about this feature here.</p>
+  </div>
+</div>
+<script>
+// EDIT THESE VALUES to customize each popup. Use a path relative to this HTML file.
+// Example image path: images/other/mounts.png
+const featureContent = {
+  "Profile": {
+    image: "images/other/profile.png",
+    alt: "Player profile example",
+    description: "Shows the player's items, their bank amount, and their stats."
+  },
+  "Professions": {
+    image: "images/other/professions.png",
+    alt: "Professions example",
+    description: "Mining, Woodcutting, Combat, Foraging, Forging. (W.I.P)"
+  },
+  "Vault": {
+    image: "images/other/vault.png",
+    alt: "Vault example",
+    description: "Has 3 pages, unlocks at level 5, keeps player's items incase of death."
+  },
+  "Bank": {
+    image: "images/other/bank.png",
+    alt: "Bank example",
+    description: "Store your pocket money safely in the bank.\nUpon death you lose 50% of your pocket money if you don't store it in the bank."
+  },
+  "Mounts": {
+    image: "images/other/mounts.png",
+    alt: "Mounts example",
+    description: "Unlocks at level 10.\nDonkey - Level Requirement: 10, Speed: 10 blocks/s.\nMule - Level Requirement: 25, Speed: 13 blocks/s.\nHorse - Level Requirement: 35, Speed: 15-18 blocks/s.\nSkeleton Horse - Level Requirement: 50, Speed: 20 blocks/s.\nZombie Horse - Level Requirement: 75, Speed: 25 blocks/s.\nCamel - Level Requirement: 90, Speed: 20 blocks/s."
+  },
+  "Fast Travel": {
+    image: "images/other/fasttravel.png",
+    alt: "Fast travel map example",
+    description: "Adds fast travel points. (W.I.P)"
+  },
+  "Levels": {
+    image: "images/other/levels.png",
+    alt: "Level progression example",
+    description: "Level 1 - 9 gives you a gray tag.\nLevel 10 - 19 gives you a green tag.\nLevel 20 - 49 gives you a blue tag.\nLevel 50 - 99 gives you a purple tag.\nLevel 100 gives you a gold tag."
+  }
+};
+
+const modal = document.getElementById('feature-modal');
+const modalTitle = document.getElementById('feature-title');
+const modalImage = document.getElementById('feature-image');
+const modalDescription = document.getElementById('feature-description');
+const closeButton = modal.querySelector('.close-modal');
+let lastFocusedTile = null;
+
+function closeModal() {
+  modal.classList.remove('open');
+  if (lastFocusedTile) lastFocusedTile.focus();
+}
+
+document.querySelectorAll('[data-feature]').forEach(tile => {
+  tile.addEventListener('click', () => {
+    const name = tile.dataset.feature;
+    const content = featureContent[name];
+    lastFocusedTile = tile;
+    modalTitle.textContent = name;
+    modalDescription.textContent = content.description;
+    modalImage.alt = content.alt || name;
+    modalImage.hidden = !content.image;
+    modalImage.onerror = () => { modalImage.hidden = true; };
+    if (content.image) {
+      modalImage.src = content.image;
+      modalImage.hidden = false;
+    }
+    modal.classList.add('open');
+    closeButton.focus();
+  });
+});
+closeButton.addEventListener('click', closeModal);
+modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+document.addEventListener('keydown', event => { if (event.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+</script>
+</body>
+</html>

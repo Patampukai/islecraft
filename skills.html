@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#17251d">
+<title>IsleCraft | Skills</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+main.wrap{width:min(1400px,calc(100% - 32px));margin:28px auto 60px}
+.skills-section{margin-bottom:48px}
+.skills-section .heading{margin-bottom:22px}
+.class-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+.class-box,.tree-box{min-width:0;padding:20px;background:#1b2a20;border:1px solid #8e7948;border-radius:9px;box-shadow:0 6px 18px #0004}
+.class-box h3,.tree-box h3{margin:0 0 14px;color:#e9c879;font-size:1.2rem}
+.skill-list{display:flex;flex-wrap:wrap;gap:9px}
+.skill-chip{position:relative;display:inline-block;padding:8px 11px;border:1px solid #ffffff24;border-radius:6px;background:#ffffff08;color:#e4e9e2;line-height:1.35;cursor:help;outline:none}
+.skill-chip:hover,.skill-chip:focus-visible{border-color:#d7b967;background:#263a2b}
+.skill-tooltip{position:absolute;z-index:20;left:50%;bottom:calc(100% + 10px);transform:translate(-50%,4px);width:min(260px,75vw);padding:12px 14px;border:1px solid #b99a52;border-radius:8px;background:#101a13;color:#e4e9e2;box-shadow:0 8px 24px #0009;font-size:.9rem;line-height:1.5;white-space:normal;text-align:left;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .15s ease,transform .15s ease}
+.skill-tooltip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);border:7px solid transparent;border-top-color:#b99a52}
+.skill-chip:hover .skill-tooltip,.skill-chip:focus .skill-tooltip{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.no-skills{color:#aab5ad;font-size:.92rem;margin:0}
+.tree-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:start}
+.tree-box{padding:14px 16px;border-style:dashed}
+.tree-box h3{margin-bottom:7px;font-size:1.05rem}
+.tree-box p{font-size:.9rem}
+.tree-box p{margin:0;color:#aab5ad;line-height:1.5}
+@media(max-width:1000px){.class-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tree-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.class-grid,.tree-grid{grid-template-columns:1fr}.class-box,.tree-box{padding:16px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="index.html"><strong>IsleCraft</strong></a>
+<nav class="navbar" aria-label="Main navigation">
+<a href="index.html">⌂ Home</a>
+<a href="map.html">▧ Map</a>
+<a href="npcs.html">♟ NPCs</a>
+<a href="items.html">◆ Items</a>
+<a href="races.html">♙ Origins</a>
+<a class="active" href="skills.html" aria-current="page">✦ Skills</a>
+<a href="other.html">⚒ Other</a>
+</nav></div></header>
+<main class="wrap">
+<section class="skills-section" id="skills">
+  <div class="heading"><h2>Skills</h2><div class="ornament"></div></div>
+  <div class="class-grid">
+    <article class="class-box"><h3>Tank</h3><div class="skill-list"><span class="skill-chip" tabindex="0">Phoenix Dive<span class="skill-tooltip">Fly up in the sky and crash down to the ground dealing AOE damage in a 5 block radius.</span></span></div></article>
+    <article class="class-box"><h3>Warrior</h3><p class="no-skills">W.I.P</p></article>
+    <article class="class-box"><h3>Rogue</h3><div class="skill-list"><span class="skill-chip" tabindex="0">Boost<span class="skill-tooltip">Get a leap boost in the direction you are facing.</span></span></div></article>
+    <article class="class-box"><h3>Archer</h3><p class="no-skills">W.I.P</p></article>
+    <article class="class-box"><h3>Hunter</h3><p class="no-skills">W.I.P</p></article>
+    <article class="class-box"><h3>Elementalist</h3><div class="skill-list"><span class="skill-chip" tabindex="0">Fireball<span class="skill-tooltip">Shoot a fireball.</span></span><span class="skill-chip" tabindex="0">Meteor Shower<span class="skill-tooltip">Rain down meteors around you in a 10 block radius.</span></span><span class="skill-chip" tabindex="0">Storm Shower<span class="skill-tooltip">Rain down meteors around you in a 10 block radius with lightning.</span></span></div></article>
+    <article class="class-box"><h3>Necromancer</h3><p class="no-skills">W.I.P</p></article>
+  </div>
+</section>
+<section class="skills-section" id="skill-tree">
+  <div class="heading"><h2>Skill Tree</h2><div class="ornament"></div></div>
+  <div class="tree-grid">
+    <article class="tree-box"><h3>Movement Speed</h3><p>Level: 1/2/3 (+10%)</p></article>
+    <article class="tree-box"><h3>Max Health</h3><p>Level: 1/2/3/4 (+5)</p></article>
+    <article class="tree-box"><h3>Max Mana</h3><p>Level: 1/2/3/4/5 (+40)</p></article>
+    <article class="tree-box"><h3>Mana Regeneration</h3><p>Level: 1/2/3 (+2)</p></article>
+    <article class="tree-box"><h3>Defense</h3><p>Level: 1/2/3/4/5 (+20)</p></article>
+    <article class="tree-box"><h3>Attack Speed</h3><p>Level: 1/2/3 (+10%)</p></article>
+  </div>
+</section>
+</main>
+</body>
+</html>

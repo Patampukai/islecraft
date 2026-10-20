@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#17251d">
+<title>IsleCraft | Map</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+main.wrap{width:min(1200px,calc(100% - 32px));margin:40px auto 64px}
+.map-heading{margin-bottom:28px}
+.map-heading h1::after {
+    content: "";
+    display: block;
+    width: 75px;
+    height: 4px;
+    margin-top: 12px;
+    background: #78c76a;
+}
+.map-heading p {
+    margin-top: 20px;
+}
+.map-heading h1 {
+    margin: 0 0 8px;
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400 !important;
+    color: #f3c66b !important;
+    letter-spacing: normal;
+}
+.map-heading p{margin:0;color:var(--muted,#aab5ad);font-family:inherit;font-size:inherit}
+.region-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.region-card{position:relative;display:flex;align-items:flex-end;min-height:240px;padding:26px;overflow:hidden;isolation:isolate;border:1px solid rgba(255,255,255,.12);border-radius:18px;background:#17251d;box-shadow:0 12px 32px rgba(0,0,0,.22);transition:transform 180ms ease,border-color 180ms ease,box-shadow 180ms ease}
+.region-card::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    z-index: -2;
+    background: var(--region-image);
+    background-size: cover;
+    background-position: center;
+    filter: blur(3px);
+    opacity: .92;
+    transition: transform 350ms ease;
+}
+.region-card::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(8,13,10,.9),rgba(8,13,10,.08) 75%)}
+.region-card:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.32);box-shadow:0 18px 38px rgba(0,0,0,.3)}
+.region-card:hover::before{transform:scale(1.04)}
+.region-card h2{margin:0;color:var(--text,#e8eee8);font-family:inherit;font-size:clamp(1.5rem,3vw,2.15rem);font-weight:700;letter-spacing:normal;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.region-card p{margin:8px 0 0;color:var(--muted,#aab5ad);font-family:inherit;font-size:inherit;font-weight:400;line-height:1.5;max-width:38ch}
+.region-content{width:100%}
+.avalonia{--region-image:url("images/map/avalonia-bg.jpg")}
+.veilfrost{--region-image:url("images/map/veilfrost-bg.jpg")}
+.pyrrathis{--region-image:url("images/map/pyrrathis-bg.jpg")}
+.khemara{--region-image:url("images/map/khemara-bg.jpg")}
+@media(max-width:700px){.region-grid{grid-template-columns:1fr}.region-card{min-height:190px}}
+@media(prefers-reduced-motion:reduce){.region-card,.region-card::before{transition:none}}
+
+    .region-card { cursor: pointer; }
+    .region-card:focus-visible { outline: 2px solid var(--accent, #91b89b); outline-offset: 4px; }
+
+    .region-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(5, 9, 7, 0.78);
+      backdrop-filter: blur(6px);
+    }
+    .region-modal.is-open { display: flex; }
+    .region-modal-panel {
+      width: min(1500px, 96vw);
+      height: 92vh;
+      max-height: 1000px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 18px;
+      background: var(--panel, #17251d);
+      box-shadow: 0 24px 70px rgba(0,0,0,.5);
+    }
+    .region-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .region-modal-header h2 {
+      margin: 0;
+      color: var(--text, #e8eee8);
+      font: inherit;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .region-modal-close {
+      display: inline-grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 10px;
+      background: rgba(255,255,255,.06);
+      color: var(--text, #e8eee8);
+      font: inherit;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .region-modal-close:hover { background: rgba(255,255,255,.12); }
+    .region-modal-body {
+      padding: 22px 24px 26px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .region-place-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+    .region-place {
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 13px;
+      background: rgba(255,255,255,.035);
+    }
+    .region-place img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: rgba(255,255,255,.05);
+    }
+    .region-place h3 {
+  margin: 0;
+  padding: 18px 15px 20px;
+  color: var(--text, #e8eee8);
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+    .region-modal-hint {
+      margin: 0 0 18px;
+      color: var(--muted, #aab5ad);
+      font-size: .92rem;
+    }
+  @media (max-width: 900px) {
+  .region-place-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .region-modal {
+    padding: 10px;
+  }
+
+  .region-modal-panel {
+    max-height: 90vh;
+  }
+
+  .region-modal-header {
+    padding: 16px;
+  }
+
+  .region-modal-body {
+    padding: 16px;
+  }
+
+  .region-place-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="index.html"><span><strong>IsleCraft</strong></span></a>
+<nav class="navbar" aria-label="Main navigation">
+<a href="index.html">⌂ Home</a>
+<a class="active" href="map.html" aria-current="page">▧ Map</a>
+<a href="npcs.html">♟ NPCs</a>
+<a href="items.html">◆ Items</a>
+<a href="races.html">♙ Origins</a>
+<a href="skills.html">✦ Skills</a>
+<a href="other.html">⚒ Other</a>
+</nav></div></header>
+<main class="wrap">
+<section class="map-heading"><h1>World and Regions</h1><p>Explore lands of IsleCraft.</p></section>
+<section class="region-grid" aria-label="IsleCraft regions">
+<article class="region-card avalonia" role="button" tabindex="0" data-region="Avalonia" aria-label="Open Avalonia locations"><div class="region-content"><h2>Avalonia</h2><p>A lush land of forests, greenery, and new beginnings.</p></div></article>
+<article class="region-card veilfrost" role="button" tabindex="0" data-region="Veilfrost" aria-label="Open Veilfrost locations"><div class="region-content"><h2>Veilfrost (W.I.P)</h2><p>A frozen realm of towering mountains, ice, and snow.</p></div></article>
+<article class="region-card pyrrathis" role="button" tabindex="0" data-region="Pyrrathis" aria-label="Open Pyrrathis locations"><div class="region-content"><h2>Pyrrathis (W.I.P)</h2><p>A volcanic island shaped by fire, lava, and ash.</p></div></article>
+<article class="region-card khemara" role="button" tabindex="0" data-region="Khemara" aria-label="Open Khemara locations"><div class="region-content"><h2>Khemara (W.I.P)</h2><p>An ancient desert of sun-scorched sands and forgotten ruins.</p></div></article>
+</section>
+<div class="region-modal" id="regionModal" aria-hidden="true">
+  <section class="region-modal-panel" role="dialog" aria-modal="true" aria-labelledby="regionModalTitle">
+    <header class="region-modal-header">
+      <h2 id="regionModalTitle">Region locations</h2>
+      <button class="region-modal-close" id="regionModalClose" type="button" aria-label="Close region locations">&times;</button>
+    </header>
+    <div class="region-modal-body">
+      <div class="region-place-grid" id="regionPlaceGrid"></div>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<script>
+(() => {
+  const regionData = {
+    Avalonia: [
+      { name: "Valoria", image: "images/map/avalonia/valoria.png" },
+      { name: "Graveyard", image: "images/map/avalonia/graveyard.png" },
+      { name: "Gildbane Mine", image: "images/map/avalonia/gildbanemine.png" },
+      { name: "Forest", image: "images/map/avalonia/forest.png" },
+      { name: "Wizard's Tower", image: "images/map/avalonia/wizardstower.png" },
+      { name: "Farm", image: "images/map/avalonia/farm.png" },
+      { name: "Aurtree", image: "images/map/avalonia/aurtree.png" },
+      { name: "Realm of Aurelis (W.I.P)", image: "images/map/avalonia/realmofaurelis.png" },
+      { name: "The Forgotten Necropolis (W.I.P)", image: "images/map/avalonia/necropolis.png" },
+      { name: "Roots of Aurtree (W.I.P)", image: "images/map/avalonia/rootsofaurtree.png" }
+    ],
+    Veilfrost: [
+      { name: "Frostgard (W.I.P)", image: "images/map/veilfrost/frostgard.png" },
+      { name: "Frost Forest (W.I.P)", image: "images/map/veilfrost/frostforest.png" },
+      { name: "Frosthollow (W.I.P)", image: "images/map/veilfrost/frosthollow.png" }
+    ],
+    Pyrrathis: [
+      { name: "Volcanic Depths (W.I.P)", image: "images/map/pyrrathis/volcanicdepths.png" },
+      { name: "Moon Clock", image: "images/map/pyrrathis/moonclock.png" }
+    ],
+    Khemara: [
+      { name: "Wastelands", image: "images/map/khemara/sunscar-dunes.png" }
+    ]
+  };
+
+  const modal = document.getElementById("regionModal");
+  const title = document.getElementById("regionModalTitle");
+  const grid = document.getElementById("regionPlaceGrid");
+  const closeButton = document.getElementById("regionModalClose");
+  let lastTrigger = null;
+
+  function openRegion(regionName, trigger) {
+    const places = regionData[regionName];
+    if (!places) return;
+    lastTrigger = trigger;
+    title.textContent = regionName;
+    grid.replaceChildren();
+
+    places.forEach(place => {
+      const card = document.createElement("article");
+      card.className = "region-place";
+
+      const img = document.createElement("img");
+      img.src = place.image;
+      img.alt = place.name;
+      img.loading = "lazy";
+      img.addEventListener("error", () => {
+        img.alt = place.name + " image not added yet";
+        img.style.display = "none";
+      }, { once: true });
+
+      const heading = document.createElement("h3");
+      heading.textContent = place.name;
+      card.append(img, heading);
+      grid.append(card);
+    });
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    closeButton.focus();
+  }
+
+  function closeRegion() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  document.querySelectorAll(".region-card[data-region]").forEach(card => {
+    card.addEventListener("click", () => openRegion(card.dataset.region, card));
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openRegion(card.dataset.region, card);
+      }
+    });
+  });
+
+  closeButton.addEventListener("click", closeRegion);
+  modal.addEventListener("click", event => {
+    if (event.target === modal) closeRegion();
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && modal.classList.contains("is-open")) closeRegion();
+  });
+})();
+</script>
+
+</body>
+</html>
